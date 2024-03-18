@@ -20,6 +20,7 @@ public class RestUtils {
 	public static ResourceBundle routes = ResourceBundle.getBundle("Routes");
 	
 	public RequestSpecification requestSpecification() throws FileNotFoundException {
+		
 		if(req==null)
 		{
 		PrintStream log=new PrintStream (new FileOutputStream("logging.txt"));

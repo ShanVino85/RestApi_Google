@@ -15,6 +15,7 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -48,7 +49,8 @@ public class Postrequest extends RestUtils {
 		
 		response = res
 				.when().post(routes.getString("Post_url"))
-				.then().spec(resspec).log().all().extract().response();
+				.then().body(JsonSchemaValidator.matchesJsonSchemaInClasspath("Schema/Postschema/Post.json"))
+				.spec(resspec).log().all().extract().response();
 	}
 	
 
